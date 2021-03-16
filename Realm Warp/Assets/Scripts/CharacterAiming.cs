@@ -12,6 +12,8 @@ public class CharacterAiming : MonoBehaviour
 
     Camera mainCamera;
     RaycastTelekinesis telekinesisHand;
+
+    Player player;
     
 
     // Start is called before the first frame update
@@ -21,6 +23,7 @@ public class CharacterAiming : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         telekinesisHand = GetComponentInChildren<RaycastTelekinesis>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -38,21 +41,22 @@ public class CharacterAiming : MonoBehaviour
             {
                 aimLayer.weight += Time.deltaTime / aimDuration;
 
+                // modify to only shoot when aiming.
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    telekinesisHand.ShootRay();
+                    player.UseMana(30);
+                }
+                if (Input.GetButtonUp("Fire1"))
+                {
+                    telekinesisHand.StopRay();
+                }
+
             }
             else
             {
                 aimLayer.weight -= Time.deltaTime / aimDuration;
             }
-        }
-
-        // modify to only shoot when aiming.
-        if (Input.GetButtonDown("Fire1"))
-        {
-            telekinesisHand.ShootRay();
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            telekinesisHand.StopRay();
         }
     }
 }
