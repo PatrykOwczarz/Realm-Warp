@@ -25,7 +25,6 @@ public class MainMenuAnimation : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
-            
         }
 
         if (forceTime > 10f)

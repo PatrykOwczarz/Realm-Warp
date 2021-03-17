@@ -41,13 +41,16 @@ public class CharacterAiming : MonoBehaviour
             {
                 aimLayer.weight += Time.deltaTime / aimDuration;
 
-                // modify to only shoot when aiming.
-                if (Input.GetButtonDown("Fire1"))
+                // the player shoots a ray at a target at the cost of 30 mana
+                if (Input.GetButtonDown("Fire1") && telekinesisHand.GetIsReady())
                 {
-                    telekinesisHand.ShootRay();
-                    player.UseMana(30);
+                    if (player.currentMana >= 30)
+                    {
+                        telekinesisHand.ShootRay();
+                        player.UseMana(30);
+                    }
                 }
-                if (Input.GetButtonUp("Fire1"))
+                if (Input.GetButtonUp("Fire1") && telekinesisHand.GetIsReady())
                 {
                     telekinesisHand.StopRay();
                 }
