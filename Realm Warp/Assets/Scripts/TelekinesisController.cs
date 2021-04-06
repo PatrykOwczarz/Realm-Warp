@@ -13,7 +13,11 @@ public class TelekinesisController : MonoBehaviour
     private bool hasLiftAmount;
 
     public GameObject pullPosition;
-    private Vector3 pullDirection;
+    private Vector3 pullForce;
+    public float pullForceModifier = 1.0f;
+    public float maxVelocity;
+    public float posistionDistanceThreshold;
+    public float velocityDistanceThreshhold;
 
     private Vector3 throwDirection;
     
@@ -33,7 +37,7 @@ public class TelekinesisController : MonoBehaviour
         target = null;
         hasLiftAmount = false;
         isReady = true;
-    currentStep = TelekinesisSteps.WAITING;
+        currentStep = TelekinesisSteps.WAITING;
     }
 
     void Update()
@@ -68,10 +72,12 @@ public class TelekinesisController : MonoBehaviour
                     break;
 
                 case (TelekinesisSteps.PULL):
-                    PullHoldTarget();
+                    StartCoroutine(PullHoldTarget());
                     break;
 
                 case (TelekinesisSteps.THROW):
+                    target.constraints = RigidbodyConstraints.None;
+                    target.GetComponentInParent<Transform>().parent = null;
                     ThrowTarget();
                     isReady = true;
                     break;
@@ -110,24 +116,37 @@ public class TelekinesisController : MonoBehaviour
         
     }
 
-    private void PullHoldTarget()
+    IEnumerator PullHoldTarget()
     {
-        pullDirection = pullPosition.transform.position - target.position;
-
-        //checks if levitation object collides and stops the motion if it does. Kinda clunky need to look at a better implementation.
-        if (Physics.CheckSphere(pullPosition.transform.position , 0.01f))
+        while (true)
         {
-            target.velocity = Vector3.zero;
-            target.AddForce(Vector3.up * 9.8f, ForceMode.Acceleration);
+            float distanceToPullPosition = Vector3.Distance(target.position, pullPosition.transform.position);
+
+            if (distanceToPullPosition < posistionDistanceThreshold)
+            {
+                target.position = pullPosition.transform.position;
+                target.constraints = RigidbodyConstraints.FreezePosition;
+                target.GetComponentInParent<Transform>().parent = pullPosition.transform;
+                break;
+            }
+
+            Vector3 pullDirection = pullPosition.transform.position - target.position;
+
+            pullForce = pullDirection.normalized * pullForceModifier;
+
+            if (target.velocity.magnitude < maxVelocity && distanceToPullPosition > velocityDistanceThreshhold)
+            {
+                target.AddForce(pullForce, ForceMode.Force);
+            }
+            //if the target object does not collide it keeps on moving the object to desired location.
+            else
+            {
+                target.velocity = pullDirection.normalized * maxVelocity;
+            }
+
+            yield break;
 
         }
-        //if the target object does not collide it keeps on moving the object to desired location.
-        else
-        {
-            target.AddForce(pullDirection.normalized * target.mass, ForceMode.Impulse);
-
-        }
-
 
     }
 
@@ -135,7 +154,7 @@ public class TelekinesisController : MonoBehaviour
     {
         //retrieve crosshair aim and throw the object at the crosshair location.
         throwDirection = raycastDesitnation.position - target.position;
-        target.AddForce(throwDirection * target.mass * 4f, ForceMode.Impulse);
+        target.AddForce(throwDirection.normalized * (50f * target.mass), ForceMode.Impulse);
         currentStep = TelekinesisSteps.WAITING;
         target = null; 
     }
