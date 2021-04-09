@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\ManaBar.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Ragdoll.cs" />
+    <Compile Include="Assets\Scripts\RagdollCollision.cs" />
     <Compile Include="Assets\Scripts\RaycastTelekinesis.cs" />
     <Compile Include="Assets\Scripts\TelekinesisController.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

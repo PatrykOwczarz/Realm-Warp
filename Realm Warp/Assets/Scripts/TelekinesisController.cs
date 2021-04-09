@@ -92,6 +92,19 @@ public class TelekinesisController : MonoBehaviour
         this.target = tar;
     }
 
+    public string GetTargetTag()
+    {
+        if (target != null)
+        {
+            return target.tag;
+        }
+        else
+        {
+            return "null";
+        }
+            
+    }
+
     public bool GetIsReady()
     {
         return isReady;

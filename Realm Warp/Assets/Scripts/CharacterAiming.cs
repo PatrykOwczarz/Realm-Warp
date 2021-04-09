@@ -47,7 +47,10 @@ public class CharacterAiming : MonoBehaviour
                     if (player.currentMana >= 30)
                     {
                         telekinesisHand.ShootRay();
-                        player.UseMana(30);
+                        if(telekinesisHand.GetTargetTag() == "Telekinesis")
+                        {
+                            player.UseMana(30);
+                        }
                     }
                 }
                 if (Input.GetButtonUp("Fire1") && telekinesisHand.GetIsReady())

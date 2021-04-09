@@ -26,7 +26,11 @@ public class RaycastTelekinesis : MonoBehaviour
         ray.direction = raycastDesitnation.position - raycastOrigin.position;
         if(Physics.Raycast(ray, out hitInfo))
         {
-            controller.SetTarget(hitInfo.rigidbody);
+            if (hitInfo.collider.CompareTag("Telekinesis"))
+            {
+                controller.SetTarget(hitInfo.rigidbody);
+            }
+            
             Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
         }
     }
@@ -39,5 +43,10 @@ public class RaycastTelekinesis : MonoBehaviour
     public bool GetIsReady()
     {
         return controller.GetIsReady();
+    }
+
+    public string GetTargetTag()
+    {
+        return controller.GetTargetTag();
     }
 }
