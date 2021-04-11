@@ -14,7 +14,6 @@ public class AIMovement : MonoBehaviour
     public float maxDistance = 1.0f;
     float timer = 0.0f;
 
-    bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -29,21 +28,25 @@ public class AIMovement : MonoBehaviour
             rigidBody.gameObject.AddComponent<RagdollCollision>();
             rigidBody.GetComponent<RagdollCollision>().InitialiseValues(agent, ragdoll);
         }
-
-        isDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Speed", agent.velocity.magnitude);
+    }
+
+    public void RunAtPlayer()
+    {
         timer -= Time.deltaTime;
         if (timer < 0.0f)
-        {
+        { 
             float sqDistance = (playerTransform.position - agent.destination).sqrMagnitude;
-            if (sqDistance > maxDistance*maxDistance)
+            if (sqDistance > maxDistance * maxDistance)
             {
-                if (!isDead)
+                if (!ragdoll.GetIsDead())
                 {
+                    agent.stoppingDistance = 2f;
                     agent.destination = playerTransform.position;
                 }
             }
@@ -51,4 +54,23 @@ public class AIMovement : MonoBehaviour
         }
         animator.SetFloat("Speed", agent.velocity.magnitude);
     }
+
+    public void MoveToLocation(Transform waypoint)
+    {
+        agent.stoppingDistance = 1f;
+        agent.destination = waypoint.position;
+    }
+
+    public void LookAtPlayer()
+    {
+        if (!ragdoll.GetIsDead())
+        {
+            agent.velocity = Vector3.zero;
+            var relativePos = playerTransform.position - transform.position;
+            relativePos = new Vector3(relativePos.x, 0, relativePos.z);
+            var rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
+        }
+    }
+
 }

@@ -7,6 +7,7 @@ public class Ragdoll : MonoBehaviour
     Rigidbody[] rigidBodies;
     Animator animator;
     public Rigidbody hip;
+    private bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Ragdoll : MonoBehaviour
         {
             rigidBody.isKinematic = true;
         }
+        isDead = false;
         animator.enabled = true;
     }
 
@@ -32,6 +34,7 @@ public class Ragdoll : MonoBehaviour
         {
             rigidBody.isKinematic = false;
         }
+        isDead = true;
         animator.enabled = false;
     }
 
@@ -40,5 +43,10 @@ public class Ragdoll : MonoBehaviour
         
         hip.AddForce(force * hip.mass, ForceMode.Impulse);
 
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
     }
 }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AIMovement.cs" />
+    <Compile Include="Assets\Scripts\AIStateMachineMelee.cs" />
     <Compile Include="Assets\Scripts\CharacterAiming.cs" />
     <Compile Include="Assets\Scripts\CharacterLocomotion.cs" />
     <Compile Include="Assets\Scripts\CrosshairTarget.cs" />
