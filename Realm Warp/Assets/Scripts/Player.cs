@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         //expand implementation so that it goes down to zero rather than not going decreasing it if it would go negative.
 
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
             currentMana += manaUsed;
     }
 
-    private void Heal(int healAmount)
+    public void Heal(int healAmount)
     {
         currentHealth += healAmount;
         if (currentHealth <= maxHealth)

@@ -10,7 +10,7 @@ public class AIMovement : MonoBehaviour
     Animator animator;
     Ragdoll ragdoll;
 
-    public float maxTime = 1.0f;
+    public float maxTime = 0.5f;
     public float maxDistance = 1.0f;
     float timer = 0.0f;
 

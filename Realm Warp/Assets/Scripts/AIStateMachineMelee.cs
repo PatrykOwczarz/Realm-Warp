@@ -16,11 +16,13 @@ public class AIStateMachineMelee : MonoBehaviour
     private AIMovement movementController;
     public Transform[] Waypoints;
     public Transform player;
+    Animator animator;
 
     public float maxTime = 4.0f;
     public float lookAtDistance = 10f;
-    public float aggroDistance = 5f;
+    public float aggroDistance = 7f;
     private float timer = 0.0f;
+    private float animTimer = 0.0f;
 
     private int currentWaypoint;
 
@@ -30,6 +32,7 @@ public class AIStateMachineMelee : MonoBehaviour
         currentWaypoint = 0;
         movementController = GetComponent<AIMovement>();
         currentState = AIStates.PATROL;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -93,12 +96,36 @@ public class AIStateMachineMelee : MonoBehaviour
 
     private void FollowPlayer()
     {
+        timer -= Time.deltaTime;
         movementController.RunAtPlayer();
         var distanceFromPlayer = (player.position - transform.position).magnitude;
         if (distanceFromPlayer > aggroDistance)
         {
             currentState = AIStates.LOOKAT;
         }
+        animTimer -= Time.deltaTime;
+        if (distanceFromPlayer < 2f)
+        {
+            movementController.LookAtPlayer();
+            if (animTimer < 0.0f)
+            {
+                animator.SetTrigger("Attack");
+                animTimer = 1.2f;
+            }
+        }
+    }
+
+    // Draws wireframe gizmos that allow for debugging in the scene view.
+    private void OnDrawGizmosSelected()
+    {
+        var distanceFromPlayer = (player.position - transform.position).magnitude;
+        Gizmos.DrawWireSphere(transform.position, distanceFromPlayer);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, lookAtDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, aggroDistance);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 2f);
     }
 
 }
