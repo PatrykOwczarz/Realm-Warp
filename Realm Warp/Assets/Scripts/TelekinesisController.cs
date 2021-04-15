@@ -59,7 +59,8 @@ public class TelekinesisController : MonoBehaviour
             switch (currentStep)
             {
                 case (TelekinesisSteps.WAITING):
-                    if (target.CompareTag("Telekinesis"))
+                    // Liftable is for lifting ragdolls but force on throw is too small.
+                    if (target.CompareTag("Telekinesis") || target.CompareTag("Liftable"))
                     {
                         isReady = false;
                         hasLiftAmount = false;

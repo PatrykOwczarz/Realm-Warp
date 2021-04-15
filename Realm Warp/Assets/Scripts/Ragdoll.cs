@@ -33,6 +33,8 @@ public class Ragdoll : MonoBehaviour
         foreach (var rigidBody in rigidBodies)
         {
             rigidBody.isKinematic = false;
+            // This allows the player to pickup the ragdoll object.
+            //rigidBody.gameObject.tag = "Liftable";
         }
         isDead = true;
         animator.enabled = false;

@@ -31,12 +31,23 @@ public class Player : MonoBehaviour
         if (currentMana < maxMana)
         {
             timeInterval += Time.deltaTime * 2;
-            if (timeInterval >= 1f)
+            if (GameInformation.instance.GetRealmWarp())
             {
-                currentMana += 1;
-                manaBar.SetMana(currentMana);
-                timeInterval = 0;
+                if (timeInterval >= 1f)
+                {
+                    RegainMana(5);
+                    timeInterval = 0;
+                }
             }
+            else
+            {
+                if (timeInterval >= 1f)
+                {
+                    RegainMana(1);
+                    timeInterval = 0;
+                }
+            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -50,6 +61,7 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             Heal(20);
+            RegainMana(20);
         }
     }
 
@@ -92,8 +104,10 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
             healthBar.SetHealth(currentHealth);
         }
-
-        currentMana += healAmount;
+    }
+    public void RegainMana(int manaGained)
+    {
+        currentMana += manaGained;
         if (currentMana <= maxMana)
         {
             manaBar.SetMana(currentMana);
