@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cef6112e4563e140a0cbb4ba384f57b, type: 3}
+  m_Name: RealmOrb
+  m_EditorClassIdentifier: 
+  name: Dark Realm Orb
+  amount: 10
+  material: {fileID: 2100000, guid: 4388602db6ee35e428ff4bada2ef19e3, type: 2}

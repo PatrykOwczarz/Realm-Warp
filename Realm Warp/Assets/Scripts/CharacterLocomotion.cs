@@ -40,6 +40,16 @@ public class CharacterLocomotion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)){
             Jump();
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            gravity = 0f;
+            velocity = Vector3.zero;
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            gravity = 20f;
+        }
     }
 
     // https://www.youtube.com/watch?v=4y4QXEPnkgY at 6:30

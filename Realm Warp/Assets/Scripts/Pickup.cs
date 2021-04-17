@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pickup : Interactable
 {
-
     public override void Interact()
     {
         base.Interact();
@@ -14,9 +13,21 @@ public class Pickup : Interactable
 
     void PickUp()
     {
-        Debug.Log("Picking up item.");
+        Debug.Log("Picking up " + powerup.name);
 
-        GameInformation.instance.SetRealmWarp(true);
+        // Based on the name of the powerup, performs different functions and the object is destroyed.
+        if (powerup.name == "Dark Realm Orb")
+        {
+            GameInformation.instance.SetRealmWarp(true);
+        }
+        else if (powerup.name == "Health Orb")
+        {
+            GameInformation.instance.GetPlayer().GetComponent<Player>().Heal((int)powerup.amount);
+        }
+        else if (powerup.name == "Mana Orb")
+        {
+            GameInformation.instance.GetPlayer().GetComponent<Player>().RegainMana((int)powerup.amount);
+        }
         Destroy(gameObject);
     }
 

@@ -10,7 +10,7 @@ public class RealmWarp : MonoBehaviour
     private bool isWarped = false;
 
     private float timer = 0.0f;
-    private float warpDuration = 5.0f;
+    private float warpDuration = 10.0f;
 
     // Start is called before the first frame update
     void Start()
