@@ -20,6 +20,7 @@ public class CharacterLocomotion : MonoBehaviour
     Vector3 velocity;
     bool isJumping;
 
+    bool isFloating = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +42,30 @@ public class CharacterLocomotion : MonoBehaviour
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        // If the player enters the dark realm, they can toggle floating by pressing the E key. The player floats in the current y plane. 
+        if (GameInformation.instance.GetRealmWarp())
         {
-            gravity = 0f;
-            velocity = Vector3.zero;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                isFloating = !isFloating;
+                if (isFloating)
+                {
+                    gravity = 0f;
+                    airControl = 5f;
+                    velocity = Vector3.zero;
+                }
+                else
+                {
+                    gravity = 20f;
+                    airControl = 2.5f;
+                }
+
+            }
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        else
         {
             gravity = 20f;
+            airControl = 2.5f;
         }
     }
 
