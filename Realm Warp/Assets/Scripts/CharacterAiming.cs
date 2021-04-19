@@ -12,9 +12,12 @@ public class CharacterAiming : MonoBehaviour
 
     Camera mainCamera;
     RaycastTelekinesis telekinesisHand;
+    public ForcePush forcePush;
+    bool canForcePush = true;
 
     Player player;
-    
+    CharacterController cc;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,8 @@ public class CharacterAiming : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         telekinesisHand = GetComponentInChildren<RaycastTelekinesis>();
         player = GetComponent<Player>();
+        cc = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -62,6 +67,35 @@ public class CharacterAiming : MonoBehaviour
             else
             {
                 aimLayer.weight -= Time.deltaTime / aimDuration;
+            }
+
+            // if realm warp is active, allow the player to press Q to force push.
+            if (GameInformation.instance.GetRealmWarp())
+            {
+                // Refactor this code, currently the hitbox for push back is on for as long as you hold the key down. It should appear and disappear quickly even if key is held down.
+                // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                if (Input.GetKeyDown(KeyCode.Q) && cc.isGrounded)
+                {
+                    if (player.currentMana >= 20 && canForcePush)
+                    {
+                        player.UseMana(20);
+                        animator.SetTrigger("Force");
+                        forcePush.gameObject.SetActive(true);
+                        canForcePush = false;
+                        //forcePush.gameObject.SetActive(false);
+                    }
+
+                }        
+                if (Input.GetKeyUp(KeyCode.Q))
+                {
+                    forcePush.gameObject.SetActive(false);
+                    canForcePush = true;    
+                }
+            }
+            else
+            {
+                forcePush.gameObject.SetActive(false);
+                canForcePush = true;
             }
         }
     }

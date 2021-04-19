@@ -42,11 +42,7 @@ public class RealmWarp : MonoBehaviour
         // For testing purposes:
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ActivateWarp();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            DeactivateWarp();
+            GameInformation.instance.SetRealmWarp(true);
         }
 
     }
