@@ -168,6 +168,12 @@ public class TelekinesisController : MonoBehaviour
     {
         //retrieve crosshair aim and throw the object at the crosshair location.
         throwDirection = raycastDesitnation.position - target.position;
+
+        // if the crosshair is not aiming at a wall, use the camera forward vector instead. As if the raycast does not hit anything, it returns (0,0,0) as the position.
+        if (raycastDesitnation.position == new Vector3(0f,0f,0f))
+        {
+            throwDirection = Camera.main.transform.forward;
+        }
         target.AddForce(throwDirection.normalized * (50f * target.mass), ForceMode.Impulse);
         currentStep = TelekinesisSteps.WAITING;
         target = null; 
