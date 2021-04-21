@@ -18,6 +18,7 @@ public class Ragdoll : MonoBehaviour
 
     }
 
+    // for each limb, deactivates the ragdoll by deactivating its motion in the physics agent.
     public void DeactivateRagdoll()
     {
         foreach (var rigidBody in rigidBodies)
@@ -28,6 +29,7 @@ public class Ragdoll : MonoBehaviour
         animator.enabled = true;
     }
 
+    // for each limb, activates the ragdoll by allowing motion of each collider on the ragdoll.
     public void ActivateRagdoll()
     {
         foreach (var rigidBody in rigidBodies)
@@ -40,6 +42,7 @@ public class Ragdoll : MonoBehaviour
         animator.enabled = false;
     }
 
+    // a method that mekes applying forces to the enemy AI simple.
     public void ApplyForce(Vector3 force)
     {
         
@@ -47,6 +50,7 @@ public class Ragdoll : MonoBehaviour
 
     }
 
+    // checks if the target is dead or not. Applied in the enemy AI scripts.
     public bool GetIsDead()
     {
         return isDead;

@@ -21,6 +21,7 @@ public class RealmWarp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if GetRealmWarp() returns true from the GameInformation singleton script, activate warp and set the duration of realm warp equal to the warpDuration variable.
         if (GameInformation.instance.GetRealmWarp() && !isWarped)
         {
             ActivateWarp();
@@ -28,6 +29,7 @@ public class RealmWarp : MonoBehaviour
             isWarped = true;
         }
 
+        // if warp is on, reduce the timer and when the timer reaches 0, deactivate the warp and set the realm warp variable to false in GameInformation.
         if (isWarped)
         {
             timer -= Time.deltaTime;
@@ -47,6 +49,7 @@ public class RealmWarp : MonoBehaviour
 
     }
 
+    // changes the colour of all point lights to blue and changes the colour of the directional light to magenta.
     public void ActivateWarp()
     {
         Debug.Log("Activated Warp");
@@ -64,6 +67,7 @@ public class RealmWarp : MonoBehaviour
         }
     }
 
+    // resets the colours of all lights to the standard light colour which is defined in the base colour variable.
     public void DeactivateWarp()
     {
         Debug.Log("Deactivated Warp");

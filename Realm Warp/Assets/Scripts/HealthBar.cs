@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
     public Image fill;
     public TextMeshProUGUI amountText;
 
+    // function for setting max health of the health bar
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
@@ -19,6 +20,7 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(1f);
     }
 
+    // function to update the health and display of the health bar
     public void SetHealth(int health)
     {
         slider.value = health;

@@ -38,6 +38,7 @@ public class AIStateMachineMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // State machine implementation using a switch case statement with 3 states.
         switch (currentState)
         {
             case (AIStates.PATROL):
@@ -54,6 +55,8 @@ public class AIStateMachineMelee : MonoBehaviour
         }
     }
 
+    // moves from waypoint to waypoint patrolling the area defined by the Waypoints variable.
+    // the agent moves to a new waypoint every few seconds defined by the maxTime variable. (4 seconds at the time of comment)
     private void AIPatrol()
     {
         timer -= Time.deltaTime;
@@ -80,6 +83,7 @@ public class AIStateMachineMelee : MonoBehaviour
         }
     }
     
+    // uses the method in AIMovement to rotate the agent towards the player, only in the x and z directions.
     private void LookatPlayer()
     {
         movementController.LookAtPlayer();
@@ -94,6 +98,7 @@ public class AIStateMachineMelee : MonoBehaviour
         }
     }
 
+    // using the method in AIMovement runs at the player location and attacks the player if the agent gets 2 units or closer to the player.
     private void FollowPlayer()
     {
         timer -= Time.deltaTime;

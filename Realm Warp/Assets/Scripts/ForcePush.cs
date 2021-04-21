@@ -22,16 +22,20 @@ public class ForcePush : MonoBehaviour
         
     }
 
-    // Implement force on the collider from the player position.
+    // this script is put on a collider attached to the player.
     private void OnTriggerEnter(Collider other)
     {
+        // do not collide with player.
         if (!other.gameObject.CompareTag("Player"))
         {
+            // if the model has a rigidbody attached apply a force equal to the mass of the object * forceModifier * direction.
+            // the direction is defined as the vector of the colliding object minus the player position.
             if (other.gameObject.GetComponent<Rigidbody>() != null)
             {
                 playerPos = player.transform.position;
                 var direction = (other.transform.position - playerPos).normalized;
 
+                // if it collides with an enemy, alters the force modifier and activates ragdoll and disables the NavMeshAgent.
                 if (other.gameObject.CompareTag("Enemy"))
                 {
                     other.gameObject.GetComponentInParent<Ragdoll>().ActivateRagdoll();

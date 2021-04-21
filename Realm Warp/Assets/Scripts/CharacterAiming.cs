@@ -40,13 +40,16 @@ public class CharacterAiming : MonoBehaviour
 
     private void LateUpdate()
     {
+        // aimLayer is the rig layer controlling the arm movement of aiming.
         if (aimLayer)
         {
+            // The player has to aim up to shoot a raycast to see if the player hits a telekinesis object.
             if (Input.GetButton("Fire2"))
             {
+                // moves hand into position based on time
                 aimLayer.weight += Time.deltaTime / aimDuration;
 
-                // the player shoots a ray at a target at the cost of 30 mana
+                // the player shoots a ray at a target and if the target is a telekinesis target, reduce mana by 30.
                 if (Input.GetButtonDown("Fire1") && telekinesisHand.GetIsReady())
                 {
                     if (player.currentMana >= 30)
@@ -58,6 +61,7 @@ public class CharacterAiming : MonoBehaviour
                         }
                     }
                 }
+                // stops the ray if the shoot key is released
                 if (Input.GetButtonUp("Fire1") && telekinesisHand.GetIsReady())
                 {
                     telekinesisHand.StopRay();
@@ -66,6 +70,7 @@ public class CharacterAiming : MonoBehaviour
             }
             else
             {
+                // moves aiming hand down based on time
                 aimLayer.weight -= Time.deltaTime / aimDuration;
             }
 
@@ -82,10 +87,10 @@ public class CharacterAiming : MonoBehaviour
                         animator.SetTrigger("Force");
                         forcePush.gameObject.SetActive(true);
                         canForcePush = false;
-                        //forcePush.gameObject.SetActive(false);
                     }
 
                 }        
+                // deactivates the force push functionality when the player releases the Q key.
                 if (Input.GetKeyUp(KeyCode.Q))
                 {
                     forcePush.gameObject.SetActive(false);
@@ -94,6 +99,7 @@ public class CharacterAiming : MonoBehaviour
             }
             else
             {
+                // making sure that the collider is turned off when not in realm warp.
                 forcePush.gameObject.SetActive(false);
                 canForcePush = true;
             }

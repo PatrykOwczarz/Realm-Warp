@@ -22,6 +22,7 @@ public class AIMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         ragdoll = GetComponent<Ragdoll>();
 
+        // Adds collision for each limb of the ragdoll and initialises the values for collision to work.
         var rigidBodies = GetComponentsInChildren<Rigidbody>();
         foreach (var rigidBody in rigidBodies)
         {
@@ -33,9 +34,11 @@ public class AIMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // sets animation based on NavMeshAgent velocity.
         animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
+    // if the agent is not dead run at the player location. Used in the AIStateMachine implmentation.
     public void RunAtPlayer()
     {
         timer -= Time.deltaTime;
@@ -55,12 +58,14 @@ public class AIMovement : MonoBehaviour
         animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
+    // Move to a defined location. Used in the AI state machine implementation.
     public void MoveToLocation(Transform waypoint)
     {
         agent.stoppingDistance = 1f;
         agent.destination = waypoint.position;
     }
 
+    // rotate the agent to look at the player position if they are not dead.
     public void LookAtPlayer()
     {
         if (!ragdoll.GetIsDead())

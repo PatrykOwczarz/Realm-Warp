@@ -27,10 +27,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //Mana regen every second if below max mana
+        // Mana regen every second if below max mana
         if (currentMana < maxMana)
         {
             timeInterval += Time.deltaTime * 2;
+            // in dark realm, regen 5 mana per second.
             if (GameInformation.instance.GetRealmWarp())
             {
                 if (timeInterval >= 1f)
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
                     timeInterval = 0;
                 }
             }
+            // in regular realm regen 1 mana per second.
             else
             {
                 if (timeInterval >= 1f)
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour
             
         }
 
+        // testing methods for other aspects of the game.
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TakeDamage(23);
@@ -67,8 +70,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //expand implementation so that it goes down to zero rather than not going decreasing it if it would go negative.
-
+        // every method to do with health or mana updates the respective mana or health bar.
+        // reduce health by the damage specified in the parameter, if the damage would cause health to go into the negatives, cap at 0.
         currentHealth -= damage;
         if (currentHealth >= 0)
         {
@@ -83,6 +86,7 @@ public class Player : MonoBehaviour
 
     public void UseMana(int manaUsed)
     {
+        // reduce mana by manaUsed specified in the parameter, if the manaUse would cause the mana to go into the negatives, cap at 0.
         currentMana -= manaUsed;
         if (currentMana >= 0)
         {
@@ -94,6 +98,7 @@ public class Player : MonoBehaviour
 
     public void Heal(int healAmount)
     {
+        // same implementation as TakeDamage except instead of 0, maxHealth is used.    
         currentHealth += healAmount;
         if (currentHealth <= maxHealth)
         {
@@ -107,6 +112,7 @@ public class Player : MonoBehaviour
     }
     public void RegainMana(int manaGained)
     {
+        // same implementation as Heal except instead of maxHealth, maxMana is used.
         currentMana += manaGained;
         if (currentMana <= maxMana)
         {

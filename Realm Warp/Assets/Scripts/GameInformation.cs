@@ -35,16 +35,19 @@ public class GameInformation : MonoBehaviour
         }
     }
 
+    // a reference to the player in the current scene.
     public GameObject GetPlayer()
     {
         return player;
     }
 
+    // a referece which allows to check if realm warp is active.
     public bool GetRealmWarp()
     {
         return realmWarp;
     }
 
+    // a method which sets the state of realm warp.
     public void SetRealmWarp(bool realmWarp)
     {
         this.realmWarp = realmWarp;

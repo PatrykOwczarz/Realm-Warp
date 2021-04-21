@@ -21,6 +21,7 @@ public class SwordCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // if the collision target is the player, reduce the players health down by 20. This can only occur once every 0.5 seconds to avoid repeated damage calculations.
         if (other.gameObject == player)
         {
             if (timer < 0.0f)

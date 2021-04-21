@@ -19,14 +19,18 @@ public class MainMenuAnimation : MonoBehaviour
 
     void FixedUpdate()
     {
+
         forceTime += Time.deltaTime * 2;
 
+        // when the position of the object is less than 2, apply a force upwards.
         if (transform.position.y < 2.0f)
         {
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * 2.5f, ForceMode.Impulse);
         }
 
+        // every 5 seconds apply a torque force to change the rotation of the object whilst its bouncing.
+        // could rework this code to work on a rotational velocity.
         if (forceTime > 10f)
         {
             int x = Random.Range(-20, 20);

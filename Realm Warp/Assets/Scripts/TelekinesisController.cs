@@ -22,6 +22,7 @@ public class TelekinesisController : MonoBehaviour
     private Vector3 throwDirection;
     
 
+    // Enum controlling telekinesis steps
     public enum TelekinesisSteps
     {
         WAITING,
@@ -42,6 +43,7 @@ public class TelekinesisController : MonoBehaviour
 
     void Update()
     {
+        // if the current step is pull, throw the object when pressing left mouse button.
         if (currentStep == TelekinesisSteps.PULL)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -88,11 +90,13 @@ public class TelekinesisController : MonoBehaviour
         
     }
 
+    // Setting a target for the telekinesis controller to detect. If the target has a tag "Telekinesis" the controller recognises it.
     public void SetTarget(Rigidbody tar)
     {
         this.target = tar;
     }
 
+    // Returns the name of the target tag.
     public string GetTargetTag()
     {
         if (target != null)
@@ -106,20 +110,23 @@ public class TelekinesisController : MonoBehaviour
             
     }
 
+    // return is ready.
     public bool GetIsReady()
     {
         return isReady;
     }
 
-    //function to lift the telekinesis object from the ground into the air.
+    // function to lift the telekinesis object from the ground into the air.
     private void LiftTarget()
     {
+        // create a target lift position
         if (!hasLiftAmount)
         {
             targetLift = target.position.y + 1f;
             hasLiftAmount = true;
         }
 
+        // apply a force upwards until the target reaches the above defined position. When position is met, the pull step is initiated.
         if (target.position.y < targetLift)
         {
             target.velocity = Vector3.zero;
@@ -130,12 +137,16 @@ public class TelekinesisController : MonoBehaviour
         
     }
 
+    // 
     IEnumerator PullHoldTarget()
     {
         while (true)
         {
             float distanceToPullPosition = Vector3.Distance(target.position, pullPosition.transform.position);
 
+            // if the distance to the desired position is less than the threshold, the game object becomes attached as a child of the player, hence following his movement.
+            // the position of the rigidbody is also frozen so that the object would not move around due to gravity or other forces in the physics engine.
+            // it will however keep its rotational velocity which will make it rotate around in the players hand.
             if (distanceToPullPosition < posistionDistanceThreshold)
             {
                 target.position = pullPosition.transform.position;
@@ -148,11 +159,12 @@ public class TelekinesisController : MonoBehaviour
 
             pullForce = pullDirection.normalized * pullForceModifier;
 
+            // if the target is not at the position threshold apply a force in the direction of the pull position.
             if (target.velocity.magnitude < maxVelocity && distanceToPullPosition > velocityDistanceThreshhold)
             {
                 target.AddForce(pullForce, ForceMode.Force);
             }
-            //if the target object does not collide it keeps on moving the object to desired location.
+            // if the velocity of the object would exceed the max velocity, set the velocity to the max speed.
             else
             {
                 target.velocity = pullDirection.normalized * maxVelocity;
@@ -174,6 +186,7 @@ public class TelekinesisController : MonoBehaviour
         {
             throwDirection = Camera.main.transform.forward;
         }
+
         target.AddForce(throwDirection.normalized * (50f * target.mass), ForceMode.Impulse);
         currentStep = TelekinesisSteps.WAITING;
         target = null; 

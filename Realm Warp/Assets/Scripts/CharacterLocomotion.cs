@@ -32,9 +32,11 @@ public class CharacterLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // input based on the unity defined horizontal and vertical values ( A, D for horizontal and W, S for vertical)
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
-
+        
+        // feed the input values into the animator which moves the character based on the root motion applied to the animation.
         animator.SetFloat("InputX", input.x);
         animator.SetFloat("InputY", input.y);
 
@@ -88,9 +90,11 @@ public class CharacterLocomotion : MonoBehaviour
 
     }
 
+    // updates the position on ground using the character controller by multiplying the root motion speed of the animation with the groundSpeed variable.
     private void UpdateOnGround()
     {
         Vector3 stepForwardAmount = rootmotion * groundSpeed;
+        // controls the speed at which the character steps down if possible.
         Vector3 stepDownAmmount = Vector3.down * stepDown;
         
         cc.Move(stepForwardAmount + stepDownAmmount);
@@ -102,6 +106,7 @@ public class CharacterLocomotion : MonoBehaviour
         }
     }
 
+    // reduces the y velocity by the gravity variable and calculates the displacement in air.
     private void UpdateInAir()
     {
         velocity.y -= gravity * Time.deltaTime;
@@ -113,11 +118,13 @@ public class CharacterLocomotion : MonoBehaviour
         animator.SetBool("isJumping", isJumping);
     }
 
+    // calculates a fraction of movement control in air.
     Vector3 CalculateAirControl()
     {
         return ((transform.forward * input.y) + (transform.right * input.x)) * (airControl / 100);
     }
 
+    // sets the jump velocity of the player.
     void Jump()
     {
         if (!isJumping)
@@ -127,6 +134,7 @@ public class CharacterLocomotion : MonoBehaviour
         }
     }
 
+    // adds y velocity to simulate jumping and changes the animation to jumping.
     private void SetInAir(float jumpVelocity)
     {
         isJumping = true;
@@ -135,6 +143,7 @@ public class CharacterLocomotion : MonoBehaviour
         animator.SetBool("isJumping", isJumping);
     }
 
+    // Unity created function to create collision detection without the use of a rigidbody.
     // reference: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnControllerColliderHit.html
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
