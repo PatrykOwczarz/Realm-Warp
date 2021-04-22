@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 807, y: 492}
   m_MaxSize: {x: 22002, y: 14042}
   vertical: 0
-  controlID: 35
+  controlID: 62
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 532, y: 492}
   m_MaxSize: {x: 18002, y: 14042}
   vertical: 1
-  controlID: 36
+  controlID: 63
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,10 +162,10 @@ MonoBehaviour:
     y: 0
     width: 1556
     height: 492
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 401, y: 221}
+  m_MaxSize: {x: 8001, y: 4021}
   vertical: 0
-  controlID: 37
+  controlID: 64
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,8 +185,8 @@ MonoBehaviour:
     y: 0
     width: 1142
     height: 492
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 532, y: 271}
   m_MaxSize: {x: 18002, y: 10021}
   vertical: 0
-  controlID: 111
+  controlID: 149
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -481,9 +481,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.9814756, y: 3.60215, z: -11.949932}
+    m_Target: {x: 0.67565805, y: -1.5044824, z: 22.188974}
     speed: 2
-    m_Value: {x: -1.9814756, y: 3.60215, z: -11.949932}
+    m_Value: {x: 0.67565805, y: -1.5044824, z: 22.188974}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -529,13 +529,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.17597584, y: -0.18762776, z: 0.03476436, w: 0.9659989}
+    m_Target: {x: 0.009887863, y: -0.98234, z: 0.17911285, w: 0.058655936}
     speed: 2
-    m_Value: {x: 0.17592886, y: -0.18757768, z: 0.03475508, w: 0.965741}
+    m_Value: {x: 0.0101534175, y: -0.98195076, z: 0.17904308, w: 0.06011101}
   m_Size:
-    m_Target: 1.3233721
+    m_Target: 13.29038
     speed: 2
-    m_Value: 1.3233721
+    m_Value: 13.29038
   m_Ortho:
     m_Target: 0
     speed: 2
