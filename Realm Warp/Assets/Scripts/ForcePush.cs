@@ -16,12 +16,6 @@ public class ForcePush : MonoBehaviour
         player = GameInformation.instance.GetPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // this script is put on a collider attached to the player.
     private void OnTriggerEnter(Collider other)
     {
@@ -40,14 +34,16 @@ public class ForcePush : MonoBehaviour
                 {
                     other.gameObject.GetComponentInParent<Ragdoll>().ActivateRagdoll();
                     other.gameObject.GetComponentInParent<NavMeshAgent>().isStopped = true;
-                    forceModifier = 8f;
+                    forceModifier = 6f;
                 }
                 else
                 {
                     forceModifier = 15f;
                 }
 
-                other.gameObject.GetComponent<Rigidbody>().AddForce(forceModifier * direction * other.attachedRigidbody.mass, ForceMode.Impulse);
+                Debug.Log(forceModifier);
+                var temp = Vector3.up * 0.2f;
+                other.gameObject.GetComponent<Rigidbody>().AddForce(forceModifier * (direction + temp) * other.attachedRigidbody.mass, ForceMode.Impulse);
             }
         }
     }

@@ -19,6 +19,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        playerTransform = GameInformation.instance.GetPlayer().transform;
         animator = GetComponent<Animator>();
         ragdoll = GetComponent<Ragdoll>();
 

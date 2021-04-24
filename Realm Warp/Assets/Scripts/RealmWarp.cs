@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class RealmWarp : MonoBehaviour
 {
     private GameObject[] lightRef;
     public Color baseColor;
+
+    public Slider slider;
+    public TextMeshProUGUI amountText;
 
     private bool isWarped = false;
 
@@ -25,6 +30,8 @@ public class RealmWarp : MonoBehaviour
         if (GameInformation.instance.GetRealmWarp() && !isWarped)
         {
             ActivateWarp();
+            slider.gameObject.SetActive(true);
+            slider.maxValue = warpDuration;
             timer = warpDuration;
             isWarped = true;
         }
@@ -33,9 +40,12 @@ public class RealmWarp : MonoBehaviour
         if (isWarped)
         {
             timer -= Time.deltaTime;
+            slider.value = timer;
+            amountText.text = ((int)timer).ToString();
             if (timer < 0.0f)
             {
                 DeactivateWarp();
+                slider.gameObject.SetActive(false);
                 isWarped = false;
                 GameInformation.instance.SetRealmWarp(false);
             }

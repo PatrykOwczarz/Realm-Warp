@@ -30,6 +30,7 @@ public class AIStateMachineMelee : MonoBehaviour
     void Start()
     {
         currentWaypoint = 0;
+        player = GameInformation.instance.GetPlayer().transform;
         movementController = GetComponent<AIMovement>();
         currentState = AIStates.PATROL;
         animator = GetComponent<Animator>();

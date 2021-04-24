@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     public int maxMana = 100;
     public int currentMana;
 
+    private bool isDead = false;
+
+    private Animator animator;
+
     public HealthBar healthBar;
     public ManaBar manaBar;
 
@@ -18,6 +22,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         currentMana = maxMana;
@@ -73,13 +79,18 @@ public class Player : MonoBehaviour
         // every method to do with health or mana updates the respective mana or health bar.
         // reduce health by the damage specified in the parameter, if the damage would cause health to go into the negatives, cap at 0.
         currentHealth -= damage;
-        if (currentHealth >= 0)
+        if (currentHealth > 0)
         {
+            // the damage animation loses all motion when it is triggered so it may cause problems with more than one instance of damage happening.
+            // the line of code bellow toggles the animation.
+            //animator.SetTrigger("Damaged");
             healthBar.SetHealth(currentHealth);
         }
         else
         {
             currentHealth = 0;
+            animator.SetTrigger("Dead");
+            isDead = true;
             healthBar.SetHealth(currentHealth);
         }
     }
@@ -123,5 +134,10 @@ public class Player : MonoBehaviour
             currentMana = maxMana;
             manaBar.SetMana(currentMana);
         }
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
     }
 }

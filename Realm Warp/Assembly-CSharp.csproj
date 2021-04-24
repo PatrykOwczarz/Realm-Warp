@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\GameInformation.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\Scripts\KeyPickup.cs" />
     <Compile Include="Assets\Scripts\MainMenuAnimation.cs" />
     <Compile Include="Assets\Scripts\MainMenuUI.cs" />
     <Compile Include="Assets\Scripts\ManaBar.cs" />
