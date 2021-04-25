@@ -6,7 +6,7 @@ public class GameInformation : MonoBehaviour
 {
     public static GameInformation instance;
 
-    private GameObject player;
+    private static GameObject player;
     private bool realmWarp = false;
 
     private void Awake()
@@ -35,6 +35,10 @@ public class GameInformation : MonoBehaviour
         }
     }
 
+    public void SetPlayer(GameObject p)
+    {
+        player = p;
+    }
     // a reference to the player in the current scene.
     public GameObject GetPlayer()
     {

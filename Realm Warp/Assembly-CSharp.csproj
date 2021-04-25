@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\KeyPickup.cs" />
+    <Compile Include="Assets\Scripts\LevelFinishPickup.cs" />
+    <Compile Include="Assets\Scripts\LevelUIControl.cs" />
     <Compile Include="Assets\Scripts\MainMenuAnimation.cs" />
     <Compile Include="Assets\Scripts\MainMenuUI.cs" />
     <Compile Include="Assets\Scripts\ManaBar.cs" />

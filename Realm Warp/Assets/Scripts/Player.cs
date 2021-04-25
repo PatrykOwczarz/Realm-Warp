@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
 
+        if (GameInformation.instance != null)
+        {
+            GameInformation.instance.SetPlayer(gameObject);
+        }
+
 }
 
     void Update()

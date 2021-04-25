@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
-    public void PlayGame()
+    public void PlayDemoLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
+    }
+    public void PlaySurvivalLevel()
+    {
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
