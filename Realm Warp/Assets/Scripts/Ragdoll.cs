@@ -38,6 +38,14 @@ public class Ragdoll : MonoBehaviour
             // This allows the player to pickup the ragdoll object.
             //rigidBody.gameObject.tag = "Liftable";
         }
+        // The first initial collision adds score for defeating the enemy.
+        if (!isDead)
+        {
+            GameInformation.instance.SetScore(GameInformation.instance.GetScore() + 10);
+            GameInformation.instance.SetEnemyCount(GameInformation.instance.GetEnemyCount() - 1);
+            Debug.Log(GameInformation.instance.GetEnemyCount());
+            Destroy(gameObject, 5);
+        }
         isDead = true;
         animator.enabled = false;
     }
@@ -55,4 +63,5 @@ public class Ragdoll : MonoBehaviour
     {
         return isDead;
     }
+
 }

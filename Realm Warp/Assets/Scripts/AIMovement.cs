@@ -10,10 +10,12 @@ public class AIMovement : MonoBehaviour
     Animator animator;
     Ragdoll ragdoll;
 
-    public float maxTime = 0.5f;
+    public float maxTime = 1f;
     public float maxDistance = 1.0f;
     float timer = 0.0f;
 
+    private float defaultSpeed = 4.601099f; // this is the speed at which the animation is created at.
+    public float patrolSpeed = 2.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,8 @@ public class AIMovement : MonoBehaviour
         playerTransform = GameInformation.instance.GetPlayer().transform;
         animator = GetComponent<Animator>();
         ragdoll = GetComponent<Ragdoll>();
+
+        agent.speed = defaultSpeed;
 
         // Adds collision for each limb of the ragdoll and initialises the values for collision to work.
         var rigidBodies = GetComponentsInChildren<Rigidbody>();
@@ -43,6 +47,7 @@ public class AIMovement : MonoBehaviour
     public void RunAtPlayer()
     {
         timer -= Time.deltaTime;
+        agent.speed = defaultSpeed;
         if (timer < 0.0f)
         { 
             float sqDistance = (playerTransform.position - agent.destination).sqrMagnitude;
@@ -50,7 +55,7 @@ public class AIMovement : MonoBehaviour
             {
                 if (!ragdoll.GetIsDead())
                 {
-                    agent.stoppingDistance = 2f;
+                    agent.stoppingDistance = 1.5f;
                     agent.destination = playerTransform.position;
                 }
             }
@@ -62,6 +67,7 @@ public class AIMovement : MonoBehaviour
     // Move to a defined location. Used in the AI state machine implementation.
     public void MoveToLocation(Transform waypoint)
     {
+        agent.speed = patrolSpeed;
         agent.stoppingDistance = 1f;
         agent.destination = waypoint.position;
     }

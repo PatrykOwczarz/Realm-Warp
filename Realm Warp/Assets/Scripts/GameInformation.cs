@@ -8,6 +8,8 @@ public class GameInformation : MonoBehaviour
 
     private static GameObject player;
     private bool realmWarp = false;
+    private int score = 0;
+    private int enemyCount = 0;
 
     private void Awake()
     {
@@ -57,4 +59,23 @@ public class GameInformation : MonoBehaviour
         this.realmWarp = realmWarp;
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void SetScore(int score)
+    {
+        this.score = score;
+    }
+
+    public int GetEnemyCount()
+    {
+        return enemyCount;
+    }
+
+    public void SetEnemyCount(int enemyCount)
+    {
+        this.enemyCount = enemyCount;
+    }
 }

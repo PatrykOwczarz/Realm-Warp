@@ -18,6 +18,8 @@ public class AIStateMachineMelee : MonoBehaviour
     public Transform player;
     Animator animator;
 
+    public bool isWaveBased = false; // if this is true, the patrol waypoint is set to the player location.
+
     public float maxTime = 4.0f;
     public float lookAtDistance = 10f;
     public float aggroDistance = 7f;
@@ -31,6 +33,11 @@ public class AIStateMachineMelee : MonoBehaviour
     {
         currentWaypoint = 0;
         player = GameInformation.instance.GetPlayer().transform;
+        if (isWaveBased)
+        {
+            Waypoints[0] = player.transform;
+            maxTime = 1f;
+        }
         movementController = GetComponent<AIMovement>();
         currentState = AIStates.PATROL;
         animator = GetComponent<Animator>();
@@ -110,7 +117,7 @@ public class AIStateMachineMelee : MonoBehaviour
             currentState = AIStates.LOOKAT;
         }
         animTimer -= Time.deltaTime;
-        if (distanceFromPlayer < 2f)
+        if (distanceFromPlayer < 2.1f)
         {
             movementController.LookAtPlayer();
             if (animTimer < 0.0f)

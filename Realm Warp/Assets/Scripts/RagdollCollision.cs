@@ -8,6 +8,8 @@ public class RagdollCollision : MonoBehaviour
     Ragdoll ragdoll;
     NavMeshAgent agent;
 
+    private bool test = false;
+
     public void InitialiseValues(NavMeshAgent agent, Ragdoll ragdoll)
     {
         this.agent = agent;
@@ -19,11 +21,12 @@ public class RagdollCollision : MonoBehaviour
         // tracks the ragdoll collision on each limb of the ragdoll and apply's a force when the object collides with the telekinesis object.
         // this implementation may need to be tweaked as based on the way the object collides with each limb, it may cause weird effects on collision.
         // this is something to consider in further tweaking and polishing. The effect created is consistent with what I wanted to create.
-        if (collision.gameObject.CompareTag("Telekinesis"))
+        if (collision.gameObject.CompareTag("Telekinesis") && collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5f && !test)
         {
             agent.isStopped = true;
             ragdoll.ActivateRagdoll();
             ragdoll.ApplyForce(collision.rigidbody.velocity);
+            test = true;
         }
     }
 }

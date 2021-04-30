@@ -52,10 +52,12 @@ public class RealmWarp : MonoBehaviour
         }
 
         // For testing purposes:
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             GameInformation.instance.SetRealmWarp(true);
         }
+        */
 
     }
 

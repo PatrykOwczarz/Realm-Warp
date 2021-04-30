@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
         }
 
         // testing methods for other aspects of the game.
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TakeDamage(23);
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
             Heal(20);
             RegainMana(20);
         }
+        */
     }
 
     public void TakeDamage(int damage)

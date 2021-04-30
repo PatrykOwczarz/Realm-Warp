@@ -52,12 +52,12 @@ public class CharacterAiming : MonoBehaviour
                 // the player shoots a ray at a target and if the target is a telekinesis target, reduce mana by 30.
                 if (Input.GetButtonDown("Fire1") && telekinesisHand.GetIsReady())
                 {
-                    if (player.currentMana >= 30)
+                    if (player.currentMana >= 15)
                     {
                         telekinesisHand.ShootRay();
                         if(telekinesisHand.GetTargetTag() == "Telekinesis")
                         {
-                            player.UseMana(30);
+                            player.UseMana(15);
                         }
                     }
                 }
@@ -81,9 +81,9 @@ public class CharacterAiming : MonoBehaviour
                 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 if (Input.GetKeyDown(KeyCode.Q) && cc.isGrounded)
                 {
-                    if (player.currentMana >= 20 && canForcePush)
+                    if (player.currentMana >= 30 && canForcePush)
                     {
-                        player.UseMana(20);
+                        player.UseMana(30);
                         animator.SetTrigger("Force");
                         forcePush.gameObject.SetActive(true);
                         canForcePush = false;

@@ -14,7 +14,7 @@ public class TelekinesisController : MonoBehaviour
 
     public GameObject pullPosition;
     private Vector3 pullForce;
-    public float pullForceModifier = 1.0f;
+    public float pullForceModifier;
     public float maxVelocity;
     public float posistionDistanceThreshold;
     public float velocityDistanceThreshhold;
@@ -189,6 +189,7 @@ public class TelekinesisController : MonoBehaviour
 
         target.AddForce(throwDirection.normalized * (50f * target.mass), ForceMode.Impulse);
         currentStep = TelekinesisSteps.WAITING;
-        target = null; 
+        target = null;
+
     }
 }
