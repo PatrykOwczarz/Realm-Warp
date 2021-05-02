@@ -23,6 +23,7 @@ public class LevelUIControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the escape key is pressed, the game is paused and the pause menu is enabled.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isPaused)
@@ -35,6 +36,7 @@ public class LevelUIControl : MonoBehaviour
             }
         }
 
+        // if the K key is pressed, the game opens the controls menu.
         if (Input.GetKeyDown(KeyCode.K))
         {
             if (!isControlMenuOn)
@@ -49,6 +51,7 @@ public class LevelUIControl : MonoBehaviour
             }
         }
 
+        // if the player is defeated, the game is paused and the defeat screen appears.
         if (GameInformation.instance.GetPlayer().GetComponent<Player>().GetIsDead() && !isDead)
         {
             Time.timeScale = 0f;
@@ -68,6 +71,7 @@ public class LevelUIControl : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    // toggles pause menu on.
     public void PauseMenuOn()
     {
         isPaused = true;    
@@ -77,6 +81,7 @@ public class LevelUIControl : MonoBehaviour
         pauseMenu.SetActive(true);
     }
 
+    // toggles pause menu off.
     public void PauseMenuOff()
     {
         isPaused = false;

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Parts of this script are based on the following guide:
+// https://www.youtube.com/watch?v=TpQbqRNCgM0
+// This acted as the base for my movement implementation.
+// The video guide creates a simple movement AI using the NavMeshAgent that just follows the player.
+// I have expanded upon this implementation.
+
 public class AIMovement : MonoBehaviour
 {
     NavMeshAgent agent;
@@ -73,6 +79,7 @@ public class AIMovement : MonoBehaviour
     }
 
     // rotate the agent to look at the player position if they are not dead.
+    // reference: https://forum.unity.com/threads/how-to-get-an-ai-to-look-at-player-without-navmesh.289911/
     public void LookAtPlayer()
     {
         if (!ragdoll.GetIsDead())

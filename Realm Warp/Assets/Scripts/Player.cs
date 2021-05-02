@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Mana regen every second if below max mana
+        // reference: https://forum.unity.com/threads/every-second-function.344958/
         if (currentMana < maxMana)
         {
             timeInterval += Time.deltaTime * 2;
@@ -143,6 +144,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // reference to the boolean that controls if the player is defeated or not.
     public bool GetIsDead()
     {
         return isDead;

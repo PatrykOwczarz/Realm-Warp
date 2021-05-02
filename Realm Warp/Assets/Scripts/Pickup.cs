@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Parts of this script was based on this video guide:
+// https://www.youtube.com/watch?v=9tePzyL6dgc
+// and the powerup implementation was based on the following guide:
+// https://www.youtube.com/watch?v=HQNl3Ff2Lpo
 public class Pickup : Interactable
 {
     public override void Interact()

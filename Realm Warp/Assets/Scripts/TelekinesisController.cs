@@ -137,7 +137,8 @@ public class TelekinesisController : MonoBehaviour
         
     }
 
-    // 
+    // Had issues with the initial implementation so ended up incorporating this script into my Telekinesis system:
+    // reference: https://www.youtube.com/watch?v=WECpVaw6x5M
     IEnumerator PullHoldTarget()
     {
         while (true)

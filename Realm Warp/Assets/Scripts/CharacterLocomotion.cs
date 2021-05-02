@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script was based on the following guides:
+// https://www.youtube.com/watch?v=_I8HsTfKep8
+// https://www.youtube.com/watch?v=4y4QXEPnkgY
+// Most of this was done using the guides above, I implemented the floating mechanic myself.
 public class CharacterLocomotion : MonoBehaviour
 {
     public float jumpHeight;
@@ -45,6 +49,7 @@ public class CharacterLocomotion : MonoBehaviour
         }
 
         // If the player enters the dark realm, they can toggle floating by pressing the E key. The player floats in the current y plane. 
+        // This code is my own implementation.
         if (GameInformation.instance.GetRealmWarp())
         {
             groundSpeed = 1.5f;

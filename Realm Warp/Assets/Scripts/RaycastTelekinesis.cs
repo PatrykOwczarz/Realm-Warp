@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script was based on the following guide:
+// https://www.youtube.com/watch?v=onpteKMsE84
+// Only the implementation of the raycast is reused, everything else is my own implementation of the telekinesis system unless otherwise stated in the TelekinesisController script.
+
 public class RaycastTelekinesis : MonoBehaviour
 {
    

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Used knowledge from this guide: https://www.youtube.com/watch?v=9tePzyL6dgc
+// Parts of this script was based on this video guide:
+// https://www.youtube.com/watch?v=9tePzyL6dgc
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;

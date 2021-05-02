@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script is based on the following guide:
+// https://www.youtube.com/watch?v=oLT4k-lrnwg
+// I have created my own collision implementation. Did not follow the hitbox implementation. Only the creation of a ragdoll.
 public class Ragdoll : MonoBehaviour
 {
     Rigidbody[] rigidBodies;

@@ -42,6 +42,7 @@ public class ForcePush : MonoBehaviour
                 }
 
                 Debug.Log(forceModifier);
+                // applies a force in the forward facing direction of the player with an upwards component.
                 var temp = Vector3.up * 0.2f;
                 other.gameObject.GetComponent<Rigidbody>().AddForce(forceModifier * (direction + temp) * other.attachedRigidbody.mass, ForceMode.Impulse);
             }

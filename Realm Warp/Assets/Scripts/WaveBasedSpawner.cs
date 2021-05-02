@@ -40,6 +40,8 @@ public class WaveBasedSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
+        // updates the UI with the timer and score every frame.
         timerUI.text = "Time Survived: " + ((int)timer).ToString() + "s";
         scoreUI.text = "Score: " + GameInformation.instance.GetScore();
 
@@ -49,7 +51,7 @@ public class WaveBasedSpawner : MonoBehaviour
             defeatScoreUI.text = "Score: " + GameInformation.instance.GetScore();
         }
 
-        // (int)timer % 10 == 0 &&
+        // controls the spawning of enemies when the enemy count is 0, hence every time a wave is completed.
         if (canSpawnEnemies)
         {
             for (int i = 0; i < GameInformation.instance.GetEnemyCount(); i++)
@@ -59,13 +61,16 @@ public class WaveBasedSpawner : MonoBehaviour
             canSpawnEnemies = false;
         }
 
-        // (int)timer % 15 == 0 && 
+        // controls the spawning of powerups when the enemy count is 0, hence every time a wave is completed.
         if (canSpawnPowerup)
         {
             SpawnPowerup();
             canSpawnPowerup = false;
         }
 
+        // when the enemy count is 0 or less, increment the enemy count until 10 and toggle the new wave.
+        // each wave spawns the amount of enemies defined by the enemyCount variable from the GameInformation singleton and spawns one powerup.
+        // The locations of the spawns is random based on the lists defined at the top of the script.
         if (GameInformation.instance.GetEnemyCount() <= 0)
         {
             if (currentEnemyCount < 10)
@@ -77,15 +82,9 @@ public class WaveBasedSpawner : MonoBehaviour
             canSpawnPowerup = true;
         }
        
-
-        // to implement this, create a variable that instantiates an amount of enemies equal to the enemyCount variable;
-        // instantiate one powerup every x seconds in the spawnPointPowerup locations
-        // add score for each 15 seconds survived and for each enemy, store this in GameInformation singleton.
-        // When player is defeated show time survived and score in the defeat screen and return to menu.
-        // add assets to make this level look somewhat interesting,
-        // remove current walls. Make it so that the player cant really get on top of anything.
     }
 
+    // instantiates an enemy and randomizes the spawn location out of the possible spawns.
     private void SpawnEnemy()
     {
 
@@ -98,6 +97,7 @@ public class WaveBasedSpawner : MonoBehaviour
         Instantiate(enemyPrefab, spawnPointsEnemies[enemySpawn].position, Quaternion.identity);
     }
 
+    // instantiates a powerup in one of the predefined spawn locations.
     private void SpawnPowerup()
     {
         var location = (int)Random.Range(0, spawnPointsPowerups.Length);

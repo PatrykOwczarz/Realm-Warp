@@ -14,7 +14,7 @@ public class LevelFinishPickup : Interactable
         PickUp();
     }
 
-    // pickup up the finish orb will toggle the level completed menu and pause the game.
+    // picking up the finish orb will toggle the level completed menu and pause the game.
     void PickUp()
     {
         Debug.Log("Picking up " + powerup.name);

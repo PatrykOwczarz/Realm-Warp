@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// The health bar script was based on the following guide:
+// https://www.youtube.com/watch?v=BLfNP4Sc_iA
+// This applies to the actual UI, the logic implemented for the health bar was created to fit the requirement of my game.
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;

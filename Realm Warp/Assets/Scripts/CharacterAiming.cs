@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
+// This script was based on the following guides:
+// https://www.youtube.com/watch?v=_I8HsTfKep8
+// https://www.youtube.com/watch?v=ajmp3J7N3Ow
+// The raycast implementation was taken from the guides above.
+// The logic for the telekinesis controller was my own implementation unless stated otherwise in the TelekinesisControler script.
+// The realm warp implementation for force push are also my own.
 public class CharacterAiming : MonoBehaviour
 {
 
@@ -34,6 +40,7 @@ public class CharacterAiming : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // makes the player face the crosshair direction.
         float yawCamera = mainCamera.transform.rotation.eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.fixedDeltaTime);
     }

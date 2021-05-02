@@ -59,21 +59,25 @@ public class GameInformation : MonoBehaviour
         this.realmWarp = realmWarp;
     }
 
+    // a reference to the score, used in the wave based survival mode.
     public int GetScore()
     {
         return score;
     }
 
+    // a method to set the score.
     public void SetScore(int score)
     {
         this.score = score;
     }
 
+    // a reference to the current enemy count in the level, only used in the wave based survival mode.
     public int GetEnemyCount()
     {
         return enemyCount;
     }
 
+    // a method to update the enemy count.
     public void SetEnemyCount(int enemyCount)
     {
         this.enemyCount = enemyCount;
