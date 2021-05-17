@@ -50,6 +50,7 @@ public class AIMovement : MonoBehaviour
     }
 
     // if the agent is not dead run at the player location. Used in the AIStateMachine implmentation.
+    // this function was taken from the guide referenced at the beginning of the class.
     public void RunAtPlayer()
     {
         timer -= Time.deltaTime;
@@ -67,7 +68,6 @@ public class AIMovement : MonoBehaviour
             }
             timer = maxTime;
         }
-        animator.SetFloat("Speed", agent.velocity.magnitude);
     }
 
     // Move to a defined location. Used in the AI state machine implementation.

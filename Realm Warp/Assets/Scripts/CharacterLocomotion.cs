@@ -50,6 +50,7 @@ public class CharacterLocomotion : MonoBehaviour
 
         // If the player enters the dark realm, they can toggle floating by pressing the E key. The player floats in the current y plane. 
         // This code is my own implementation.
+        // ------------------------------------------------------------------------------------
         if (GameInformation.instance.GetRealmWarp())
         {
             groundSpeed = 1.5f;
@@ -76,6 +77,7 @@ public class CharacterLocomotion : MonoBehaviour
             gravity = 20f;
             airControl = 2.5f;
         }
+        // ----------------------------------------------------------------------------------
     }
 
     // https://www.youtube.com/watch?v=4y4QXEPnkgY at 6:30

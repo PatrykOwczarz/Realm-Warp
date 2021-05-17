@@ -24,6 +24,7 @@ public class GameInformation : MonoBehaviour
     }
 
     // this video for reference on this implementation https://www.youtube.com/watch?v=Y6cKPfUTrsA
+    // -----------------------------------------
     void MakeSingleton()
     {
         if (instance != null)
@@ -36,6 +37,7 @@ public class GameInformation : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    // -----------------------------------------
 
     public void SetPlayer(GameObject p)
     {

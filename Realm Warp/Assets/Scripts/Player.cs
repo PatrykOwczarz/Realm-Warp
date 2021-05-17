@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// brief part of this guide was used:
+// https://www.youtube.com/watch?v=BLfNP4Sc_iA
+// only to use the health and mana bar
 public class Player : MonoBehaviour
 {
 

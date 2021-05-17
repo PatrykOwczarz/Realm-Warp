@@ -6,6 +6,7 @@ using UnityEngine.Animations.Rigging;
 // This script was based on the following guides:
 // https://www.youtube.com/watch?v=_I8HsTfKep8
 // https://www.youtube.com/watch?v=ajmp3J7N3Ow
+// https://www.youtube.com/watch?v=onpteKMsE84
 // The raycast implementation was taken from the guides above.
 // The logic for the telekinesis controller was my own implementation unless stated otherwise in the TelekinesisControler script.
 // The realm warp implementation for force push are also my own.
@@ -41,8 +42,8 @@ public class CharacterAiming : MonoBehaviour
     void FixedUpdate()
     {
         // makes the player face the crosshair direction.
-        float yawCamera = mainCamera.transform.rotation.eulerAngles.y;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.fixedDeltaTime);
+        float yawCam = mainCamera.transform.rotation.eulerAngles.y;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCam, 0), turnSpeed * Time.fixedDeltaTime);
     }
 
     private void LateUpdate()
@@ -81,6 +82,8 @@ public class CharacterAiming : MonoBehaviour
                 aimLayer.weight -= Time.deltaTime / aimDuration;
             }
 
+            // ------------------------------------------------------------------------------------------------------
+            // my own implementation
             // if realm warp is active, allow the player to press Q to force push.
             if (GameInformation.instance.GetRealmWarp())
             {
